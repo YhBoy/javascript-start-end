@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <img src="./1.jpg" alt="">
+
+    <h3>原型图</h3>
+    <script>
+        // 什么是原型:
+        //     ①所有引用类型都有一个__proto__(隐式原型)属性，属性值是一个普通的对象 
+        //     ②所有函数都有一个prototype(原型)属性，属性值是一个普通的对象 
+        //     ③所有引用类型的__proto__属性指向它构造函数的prototype
+
+        // 什么是原型链:
+        //     当访问一个对象的某个属性时，会先在这个对象本身属性上查找，如果没有找到，则会去它的__proto__隐式原型上查找，即它的构造函数的prototype，
+        //     如果还没有找到就会再在构造函数的prototype的__proto__中查找，这样一层一层向上查找就会形成一个链式结构，我们称为原型链
+
+
+
+
+
+
+        // 原型链:
+        //     访问一个对象的属性时
+        //         先在自身属性中查找，找到返回
+        //         如果没有，在颜值__proto__这条链向上查找，找到返回
+        //         如果最终没找到 返回undefined
+        //     别名: 隐式原型链
+        //     作用: 查找对象的属性  
+        
+         function Fn(){
+            //  this.test = function(){
+            //     console.log("test()")
+            //  }
+         }  
+         var fn = new Fn()
+         console.log(fn) 
+         console.log(fn.prototype)
+         
+         var fn1 = new Fn()
+         console.log(fn.__proto__===fn1.__proto__) // true  fn和fn1的隐式原型都指向同一个构造函数的显式原型 Person
+         
+
+    </script>
+</body>
+</html>

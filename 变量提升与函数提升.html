@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var a = 3;
+        function fn(){
+            console.log(a) // undefined
+            var a = 4
+        }
+        fn()
+
+        fn2() // fn2 is not a function     函数提升 只存在于  函数声明式这种  function fn(){}  下面的这种不存在函数提升
+        var fn2 = function(){
+            console.log("123")
+        }
+    </script>
+</body>
+</html>

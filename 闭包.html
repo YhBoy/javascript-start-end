@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 如何产生闭包:
+        //     当一个嵌套的内(子)函数引用了嵌套的外部(父)函数的变量(函数)时,就产生了闭包
+        // 闭包到底是什么?    
+        //         理解1:闭包是嵌套的内部函数
+        //         理解2:包含被引用变量(函数)的对象
+        // 产生闭包的条件
+        //     函数嵌套
+        //     内部函数引用了外部函数的数据(变量/函数)
+
+                // function fn1(){
+                //     var a = 2
+                //     function fn2(){
+                //         console.log(a)
+                //     }
+                // }
+                // fn1()
+
+
+
+
+        // 常见的闭包:
+                // 将函数作为另一个函数的返回值
+                // 将函数作为实参传递给另一个函数调用
+
+            // 错误示范: fn2内部没有使用其父函数fn1的内部变量(必须fn1内部有声明变量,且fn2内部使用)
+                // function fn1(){
+                //     function fn2(){
+
+                //     }
+                //     return fn2
+                // }        
+                // fn1()
+
+
+            // 正确示范   
+                    // 将函数作为另一个函数的返回值
+                function fn1(){
+                    var a = 1;
+                    function fn2(){
+                        ++a
+                        console.log(a)
+                    }
+                    return fn2
+                }        
+                var f = fn1()     
+                f() // 2 
+                f() // 3 
+
+
+                // 将函数作为实参传递给另一个函数调用  
+                    function showDelay(msg,time){
+                        setTimeout(function(){
+                            alert(msg)
+                        },time)
+                    }  
+                    showDelay('hahah',2000)
+
+
+
+             // 闭包的作用:
+                    使用函数内部的变量在函数执行完后,仍然存活在内存中(延长了局部变量的生命周期)       
+                    让函数外部都可以操作(读写)到函数内部的数据(变量/函数)    
+
+
+
+    </script>
+</body>
+</html>

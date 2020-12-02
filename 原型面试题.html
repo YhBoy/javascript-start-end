@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <img src="./2.jpg" alt="">
+    <h2>面试题2必看图</h2>
+    <script>
+        function  A() {}
+
+        A.prototype.n = 1
+        var b = new A();
+        A.prototype = {
+            n:2,
+            m:3
+        }
+        var c = new A()
+        //  首先 构造函数A 里面只有一个属性 n = 1 ; 
+            //  当执行到  A.prototype = {
+            //                 n:2,
+            //                 m:3
+            //             } 的时候构造函数的 prototype发生改变,已经和刚开始的 A的 prototype不一样了
+
+            //   所有 此时 b.n = 1; b.n = undefined           
+
+        console.log(b.n, b.m, c.n, c.m) // 2 , undefined, 2,3
+
+
+
+
+        //  测试题2
+        function F(){}
+        Object.prototype.a = function(){ console.log('a()') } 
+
+        Function.prototype.b= function(){
+            console.log("b()")
+        }        
+
+        var f = new F();
+       
+        f.a() // a()
+
+
+        f.b()  // f.b is not a function  原因 //  具体原因看图
+        // Function.prototype.b = function(){
+        //     console.log("b()")
+        // }   Function是这么来的 ==> function Function(){} ,  Function.__proto__ ==> Function.prototype  而 Function.prototype.b是在Function里面 原型链找不到
+        // 
+        // 而普通构造函数的 f.__proto__ ==> F.prototype 的__prototype ==> Object.prototype的 __proto__ ==> null
+
+
+        // 查找路线
+        // F.__proto__ ==> Function.prototype的 __proto__ ==> Object.prototype  的 __proto__ 最后指向 ==> null
+
+        F.a() // a()  定义的 b 在 Object.prototype 在原型链里面
+        F.b() // a()  定义的 b 在 Function.prototype 在原型链里面
+        
+
+    </script>
+</body>
+</html>

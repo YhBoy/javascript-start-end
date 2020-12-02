@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+       // 内存分类
+        //    栈: 全局变量/局部变量 (基本数据:保存的就是这个数据)
+         //   堆: 对象 (保存的是对象的地址值)
+
+
+       // 关于引用变量赋值问题
+         //   多个引用变量指向同一个对象,通过一个变量修改对象内部数据，其他所有变量看到的是修改之后的数据
+         //多个引用变量指向同一个对象，让其中一个引用变量指向另一个对象，另一个引用变量依然指向前一个对象
+            var obj = { name:'Tom' }
+            var obj1 = obj
+            obj1.name = 'bob'
+            console.log(obj.name) //  bob
+
+            function fn(obj){
+                obj.name = 'jerry'
+            }
+            fn(obj1)
+            console.log(obj1.name)  // jerry
+
+
+            // 多个引用变量指向同一个对象，让其中一个引用变量指向另一个对象，另一个引用变量依然指向前一个对象
+            var a = { age:12}
+            var b = a
+            a = { name:'Bob',age:13 }  
+            // a = { name:'Bob',age:13 }// 走到这个位置的时候 a已经和原来的地址没有关系了，从新开辟了一个内存控制 存储a的值  a已经和原来的b 断开没有任何关系了
+            console.log(b.age,a.age) // 12  13 
+
+            function fn2(obj){ 
+                obj = {age:10}
+            }
+            
+            fn2(a)
+            // 个人理解  fn2 函数 打印 为什么是13 而不是10
+            // 刚开始的时候 确实是  fn2 的形参和 实参 都指向  a = { name:'Bob',age:13 }  
+            // 但是在执行到 
+            //     function fn2(obj){ 
+            //         obj = {age:10}
+            //     } 的时候    obj等于了一个新的对象 ,执行完之后 a  没有发生任何变化  ,没有影响a 指向的对象 此时 a 没有发生变化,也没有改变a 的指向
+            // 所以 a.age = 13  不等于10   
+            console.log(a.age,"------") // 13
+
+            
+
+        // 在js调用函数时传递变量参数时,是值传递还是引用传递     
+        //     理解:都是值(基本/地址值)传递
+            //    理解: 可能是值传递 也可能是引用传递(地址值)
+                
+            var c = 3;
+            function f(c){
+                c=c+1
+            }
+            f(c)
+            console.log(c) // 3   
+
+            function fun(obj){ // 这块obj 指向的是 obj对象的地址值
+                console.log(obj.name)
+            }  
+            var obj = {name:'tom'}
+            fun(obj)
+            console.log(obj.name)
+
+
+
+
+
+        // 释放内存:    
+        //     局部变量: 函数执行完毕自动释放
+        //     对象: 成为垃圾对象 ==> 垃圾回收期回收
+
+        //     function fn(){
+        //         var b = {}
+        //     }
+            fn() // 在函数执行完毕 b 自动释放, 但是b所指向的对象在某一时刻由垃圾回收器回收
+
+    </script>
+
+
+</body>
+</html>

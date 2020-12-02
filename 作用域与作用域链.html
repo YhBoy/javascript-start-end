@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var x = 10;
+        function fn(){
+            console.log(x)
+        }
+        function show(f){
+            var x = 20;
+            fn() // 10   执行fn 的时候顺着作用域网上找  x = 10
+        }
+        show()
+
+
+        var fn2 = function(){
+            console.log(fn2)
+        }
+        fn2()
+
+        var obj = {
+            fn3:function(){
+                console.log(fn3) // 报错 fn3 is not defined , 如果想调用 obj 对象内部的 fn3 是 this.fn3()
+            }
+        }
+        obj.fn3()
+    </script>
+</body>
+</html>
