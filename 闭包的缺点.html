@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    //    闭包的缺点:
+    //          函数执行完之后,函数内的局部变量没有释放,占用内存的时间会变长
+    //          容易造成内存泄漏 
+    //     解决:
+    //         能不使用闭包就不要使用
+    //         及时释放
+
+     function fn1(){
+         var a = 10;
+         function fn2(){
+             console.log(a)
+         }
+         return fn2
+     }   
+
+     var f = fn1()
+     f()
+
+     f = null; // 让内部函数成为垃圾对象 ==> 回收闭包
+
+
+    </script>
+</body>
+</html>

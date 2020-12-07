@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 方法二:借用构造函数继承(假的)
+        // 套路:
+        //     1.定义父类型构造函数
+        //     2.定义子类型构造函数
+        //     3.在子类型构造函数中调用父类型构造
+        // 关键:
+        //     在子类型构造函数中通用super(),调用父类型构造函数  
+
+        function Person(name,age){
+            this.name = name;
+            this.age =age
+        }
+
+        Person.prototype.setName = function(name){
+            this.name = name
+        }
+
+        function Student(name,age,price){
+            Person.call(this,name,age) // this.Person(name,age)
+            this.price = price
+        }
+
+        var s = new Student('tom',20,10000)
+
+        console.log(s.name,s.age,s.price)  // tom 20 10000
+
+
+        Student.prototype = new Person() // 为了能看到父类型的方法
+
+        Student.prototype.setPrice = function(price){
+            this.price = price
+        }
+        console.log(s.price("10"))  // 这里有点问题
+
+    </script>
+</body>
+</html>

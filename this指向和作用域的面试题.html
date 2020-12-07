@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var name = 'The Window'
+        var object = {
+            name:'my Object',
+            getNameFunc: function(){
+                return function(){
+                    return this.name
+                }
+            }
+        }
+
+        // this 指向 window
+        console.log(object.getNameFunc()) // 得到 function( return this.name ){}
+        console.log(object.getNameFunc()()) // my Object      
+
+
+
+        var name2 = 'The Window'
+        var object2 = {  // 这个例子是闭包
+            name2:'my Object',
+            getNameFunc: function(){
+                var that = this
+                return function(){ // 内部函数引用外包函数的变量 
+                    return that.name2
+                }
+            }
+        }
+
+        console.log(object2.getNameFunc()()) // my Object
+
+        function fun(n,o){
+            console.log(o)
+            return {
+                fun:function(n){
+                    return fun(m,n);
+                }
+            }
+        }
+
+        var a = fun(0)  // 返回了一个对象 fun:function(n){ return fun(m,n); }     undefined
+        a.fun(1)  // a.fun(1) 调用了里面的return 返回的 fun:function（存在闭包）
+        a.fun(2)
+        a.fun(3)
+
+        var b = fun(0).fun(1).fun(2).fun(3)
+
+        var c= fun(0).fun(1)
+
+        c.fun(2)
+        c.fun(3)
+
+    </script>
+</body>
+</html>

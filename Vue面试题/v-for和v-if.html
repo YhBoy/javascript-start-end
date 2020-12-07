@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    v-for和v-if同时出现那个优先级更高?
+
+    显然v-for优先去v-if 
+    如果同时出现  每次渲染都会先循环在判断浪费性能
+
+    如果避免这种情况
+        外层嵌套一层template  在这一层进行v-for 循环 然后在内部v-for
+
+</body>
+</html>

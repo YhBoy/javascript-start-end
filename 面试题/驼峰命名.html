@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 已知有字符串  foo = get-element-by-id 写一个function 函数封装成驼峰
+
+
+        var foo = 'get-element-by-id'
+        var arr = foo.split('-')
+        console.log(arr)
+        for(var i=1; i<arr.length ;i++){
+            arr[i] = arr[i].charAt(0).toUpperCase()+arr[i].substr(1,arr[i].length-1)
+        }
+        console.log(arr.join(""))
+    </script>
+
+</body>
+</html>
