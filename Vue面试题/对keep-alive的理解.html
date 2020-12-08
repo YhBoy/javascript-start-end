@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    keep-alive是什么?
+        keep-alive是一个抽象组件：它自身不会渲染一个DOM元素，也不会出现在父组件链中；
+        使用keep-alive包裹动态组件时，会缓存不活动的组件实例，而不是销毁它们。
+
+
+    使用场景
+        用户在某个列表页面选择筛选条件过滤出一份数据列表，由列表页面进入数据详情页面，再返回该列表页面，我们希望：列表页面可以保留用户的筛选（或选中）状态。
+        keep-alive就是用来解决这种场景。当然keep-alive不仅仅是能够保存页面/组件的状态这么简单，它还可以避免组件反复创建和渲染，有效提升系统性能。总的来说，keep-alive用于保存
+        
+    用法:    <keep-alive>
+                <router-view></router-view>
+             </keep-alive>
+
+    keep-alive的生命周期
+             1.activated： 页面第一次进入的时候，钩子触发的顺序是created->mounted->activated
+             2.deactivated: 页面退出的时候会触发deactivated，当再次前进或者后退的时候只触发activated         
+
+</body>
+</html>

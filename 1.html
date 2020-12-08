@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script>
+        var obj = {}
+        var person2 = {
+            name:'爱就一个字',
+            hobby:['学习',['看电影','shopping'],'跑步']
+        }
+
+
+        var obj2 = Object.assign({},person2)
+        obj2.name = '哈哈'
+        obj2.hobby[0] = "哈哈"
+        console.log(obj2,person2)
+
+    </script>
+</body>
+</html>

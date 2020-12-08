@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <img src="./5.jpg" alt="">
+
+    <script>
+        // call
+        // var a = {x:1}
+        // var b = function(y,z){ console.log(this.x+y+z) }
+        // b.call(a,3,4)
+
+        // apply
+        // var a = {x:1}
+        // var b = function(arr){ 
+        //         console.log(this.x) 
+        //     }
+        // b.apply(a,[3,4])
+
+        //bind
+            // var a = {x:1}
+            // var b = function(y,z){ console.log(this.x+y+z) }
+            // var newB = b.bind(a)
+            // newB(3,4)
+
+        // 常用场景:
+
+            // 数组之间的追加
+            var arr1 = [1,{name:'arr1'},'walker']    
+            var arr2 = ['马萌天涯',55]    
+
+            Array.prototype.push.apply(arr1,arr2)
+            console.log(arr1) 
+
+            // 获取最大值最小值
+            // 
+            var numbers = [5,6,7,81,-2]
+            var maxNum = Math.max.apply(Math,numbers)
+            var minNum = Math.min.apply(Math,numbers) // apply(Math) 这个Math也可以是null 不明白这块
+
+            // 验证都是数组
+
+            function isArray(obj){
+                // 前提是 toString 没有被重写
+                return Object.prototype.toString.call(obj) === '[object Array]'
+            }
+
+
+            // 伪数组 运用数组的方法
+            Array.prototype.slice.call(document.getElementByTagName('*'))
+
+            // 数字求和 
+
+            function sun(){
+                var numSum = Array.prototype.reduce.apply(arguments,[function(pre,next){ return pre+next }])
+                console.log(numSum)
+            }
+            sun(1,2,3)
+
+    </script>
+
+
+
+</body>
+</html>

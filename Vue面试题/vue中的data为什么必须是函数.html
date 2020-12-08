@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    vue组件data为什么必须是函数?
+
+
+    因为js本身的特性带来的 如果js是一个对象 那么由于对象本身属于引用类型，当我们修改气质的一个属性时，会影响到所有Vue实例里面的数据
+                         如果data作为一个函数返回一个对象，那么每一个实例的 data属性都是独立的，不会相互影响
+
+</body>
+</html>
